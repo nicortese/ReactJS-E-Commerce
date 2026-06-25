@@ -6,6 +6,8 @@
 
 Tienda online de streetwear y sneakers desarrollada con React. Incluye catálogo por categorías, detalle de producto, carrito de compras y checkout con persistencia de órdenes.
 
+**Demo en vivo:** [react-js-e-commerce-six.vercel.app](https://react-js-e-commerce-six.vercel.app)
+
 ---
 
 ## Funcionalidades
