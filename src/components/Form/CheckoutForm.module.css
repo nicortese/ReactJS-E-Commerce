@@ -1,26 +1,87 @@
 .titleForm {
-    font-size: 2rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+  color: #ffffff;
 }
+
 .formContainer {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 48px 0 64px;
+  min-height: 400px;
 }
+
 .checkoutForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 60%;
-    background-color: white;
-    margin: 2.5rem;
-    border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  max-width: 480px;
+  background-color: #141414;
+  padding: 40px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
 }
-.checkoutForm Button {
-    width: 10%;
-    margin: 3rem;
+
+.totalLabel {
+  margin: 0 0 24px;
+  font-size: 1.1rem;
+  color: #d4d4d4;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #2a2a2a;
 }
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.fieldGroup label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a3a3a3;
+}
+
 .checkoutForm input {
-    width: 60%;
-    padding:0.5rem;
-    border-radius: 0.3rem;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #2a2a2a;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.checkoutForm input:focus {
+  outline: none;
+  border-color: #737373;
+}
+
+.checkoutForm input::placeholder {
+  color: #404040;
+}
+
+.submitButton {
+  margin-top: 16px !important;
+  padding: 12px !important;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 480px;
+  text-align: center;
 }

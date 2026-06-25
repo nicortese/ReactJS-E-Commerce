@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Cop´r Drop — E-Commerce
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-17-61DAFB?logo=react&logoColor=white)
+![Material UI](https://img.shields.io/badge/MUI-5-007FFF?logo=mui&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-Firestore-FFCA28?logo=firebase&logoColor=black)
 
-## Available Scripts
+Tienda online de streetwear y sneakers desarrollada con React. Incluye catálogo por categorías, detalle de producto, carrito de compras y checkout con persistencia de órdenes.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Catálogo de productos desde [DummyJSON](https://dummyjson.com/) (Nike, Puma, Off White, etc.)
+- Filtrado por categoría: remeras, hoodies y sneakers
+- Detalle con galería de imágenes, stock, rating y navegación atrás
+- Cards clickeables en toda la superficie
+- Carrito con cantidades, subtotales y persistencia en `localStorage`
+- Checkout con confirmación de orden en Firebase Firestore
+- Diseño responsive con menú mobile
+- Página 404
+- Estados de carga y error
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## Stack tecnológico
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+| Tecnología | Uso |
+|---|---|
+| React 17 + CRA | Frontend |
+| React Router v6 | Routing SPA |
+| Material UI | Componentes UI y tema oscuro |
+| Context API | Estado del carrito |
+| DummyJSON | Catálogo de productos |
+| Firebase Firestore | Persistencia de órdenes |
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Decisiones técnicas
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **DummyJSON para productos:** no existen APIs públicas oficiales de marcas como Nike. DummyJSON ofrece datos realistas con CORS habilitado, ideal para demos y portfolios.
+- **Firebase solo para órdenes:** el catálogo funciona sin configuración adicional. Firebase se usa únicamente en el checkout.
+- **Context API:** el carrito es el único estado global compartido; Context es suficiente para el scope del proyecto.
+- **localStorage:** el carrito persiste entre refrescos sin necesidad de backend.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Instalación
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone https://github.com/nicortese/ReactJS-E-Commerce.git
+cd ReactJS-E-Commerce
+npm install
+cp .env.example .env
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+La app corre en [http://localhost:3000](http://localhost:3000).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Variables de entorno
 
-## Learn More
+Copiá `.env.example` a `.env` y completá las credenciales de Firebase:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```env
+REACT_APP_FIREBASE_API_KEY=
+REACT_APP_FIREBASE_AUTH_DOMAIN=
+REACT_APP_FIREBASE_PROJECT_ID=
+REACT_APP_FIREBASE_STORAGE_BUCKET=
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
+REACT_APP_FIREBASE_APP_ID=
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+El catálogo funciona sin Firebase. Las variables son necesarias únicamente para guardar órdenes en el checkout.
 
-### Code Splitting
+### Reglas de Firestore
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /orders/{orderId} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+  }
+}
+```
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Scripts
 
-### Making a Progressive Web App
+```bash
+npm start       # Servidor de desarrollo
+npm test        # Ejecutar tests
+npm run build   # Build de producción
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Estructura del proyecto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+src/
+├── App.js
+├── theme.js
+├── Context/CartContext.jsx
+├── services/dummyJsonProducts.js
+├── utils/firebase.js
+├── components/
+│   ├── NavBar/
+│   ├── Hero/
+│   ├── Card/
+│   ├── Cart/
+│   ├── Form/
+│   ├── Footer/
+│   ├── NotFound/
+│   └── itemlistContainer.jsx
+└── index.js
+```
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Catálogo — mapeo de categorías
 
-### `npm run build` fails to minify
+| Tienda | API DummyJSON | Marcas |
+|--------|---------------|--------|
+| Remeras | `mens-shirts` | Fashion Trends, Urban Chic |
+| Hoodies | `tops`, `womens-dresses` | — |
+| Sneakers | `mens-shoes`, `womens-shoes` | Nike, Puma, Off White |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## Autor
+
+**Nico Cortese**
